@@ -3,10 +3,14 @@ name = "untitled"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+members = [".", "migration"]
 
 [dependencies]
-diesel = "2.1.0" # no backend features need to be enabled
-diesel-async = { version = "0.4.1", features = ["postgres", "deadpool"] }
-dotenv = "0.15.0"
+migration = { path = "migration" } # depends on your needs
+
+axum = { version = "0.7.2", features = ["default", "macros", "tokio"] }
+sea-orm = { version = "0.12.10", features = ["sqlx-postgres", "runtime-tokio", "macros", "debug-print"]}
 tokio = { version = "1.0.0", features = ["full"] }
+dotenv = "0.15.0"
+serde = { version = "1.0.193", features = ["derive"]}
